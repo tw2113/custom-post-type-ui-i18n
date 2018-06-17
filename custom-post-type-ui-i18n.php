@@ -21,6 +21,11 @@
 
 namespace tw2113\cptui18n;
 
+// Exit if accessed directly.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class customPostTypeUIi18n {
 
 	/**
