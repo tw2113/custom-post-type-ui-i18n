@@ -84,6 +84,7 @@ class customPostTypeUIi18n {
 		}
 
 		add_action( 'cptui_loaded', array( $this, 'includes' ) );
+		add_action( 'cptui_extra_menu_items', array( $this, 'cptui_plugin_menu' ), 10, 2 );
 	}
 
 	/**
@@ -93,7 +94,9 @@ class customPostTypeUIi18n {
 	 */
 	public function includes() {
 		include $this->path . 'inc/post-type-hooks.php';
+		include $this->path . 'inc/post-type-i18n-page.php';
 		include $this->path . 'inc/taxonomy-hooks.php';
+		include $this->path . 'inc/taxonomy-i18n-page.php';
 		include $this->path . 'inc/helpers.php';
 	}
 
@@ -125,6 +128,11 @@ class customPostTypeUIi18n {
 		echo '<div id="message" class="error">';
 		echo '<p>' . esc_attr( $error_text ) . '</p>';
 		echo '</div>';
+	}
+
+	function cptui_plugin_menu( $parent_slug, $capability ) {
+		add_submenu_page( $parent_slug, __( 'CPTUI Post Type i18n', 'custom-post-type-ui-i18n' ), __( 'Post Type i18n', 'custom-post-type-ui-i18n' ), $capability, 'cptui_post_type_i18n', __NAMESPACE__ . '\post_type_settings_page' );
+		add_submenu_page( $parent_slug, __( 'CPTUI Taxonomy i18n', 'custom-post-type-ui-i18n' ), __( 'Taxonomy i18n', 'custom-post-type-ui-i18n' ), $capability, 'cptui_taxonomy_i18n', __NAMESPACE__ . '\taxonomy_settings_page' );
 	}
 }
 
