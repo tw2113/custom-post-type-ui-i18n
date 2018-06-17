@@ -79,12 +79,12 @@ class customPostTypeUIi18n {
 	public function do_hooks() {
 
 		if ( ! $this->meets_requirements() ) {
-			add_action( 'admin_notices', array( $this, 'requirements_not_met_notice' ) );
+			add_action( 'admin_notices', [ $this, 'requirements_not_met_notice' ] );
 			return;
 		}
 
-		add_action( 'cptui_loaded', array( $this, 'includes' ) );
-		add_action( 'cptui_extra_menu_items', array( $this, 'cptui_plugin_menu' ), 10, 2 );
+		add_action( 'cptui_loaded', [ $this, 'includes' ] );
+		add_action( 'cptui_extra_menu_items', [ $this, 'cptui_plugin_menu' ], 10, 2 );
 	}
 
 	/**
